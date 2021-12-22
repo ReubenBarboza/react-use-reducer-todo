@@ -9,20 +9,23 @@ const Note = ({
   setSendEditId,
   sendEditId,
 }) => {
+  const toggleShouldEdit = () => {
+    if (shouldEdit) setShouldEdit(false);
+    else setShouldEdit(true);
+  };
   return (
     <>
       <div
-        style={{
-          backgroundColor: state.completed ? "lightgreen" : "",
-          border:
-            shouldEdit && state.id === sendEditId ? "3px solid green" : "",
-          fontSize: "1.5rem",
-        }}
+        className={`${state.completed ? "bg-green-200" : ""} ${
+          shouldEdit && state.id === sendEditId
+            ? "border-2 border-green-500"
+            : ""
+        } text-lg py-2  inline-flex items-center text-center`}
       >
-        {state.name}
-        <span style={{ position: "fixed", right: "300px" }}>
+        <span className="text-lg p-3">{state.name}</span>
+        <span>
           <button
-            style={{}}
+            className="btn"
             onClick={() =>
               dispatch({ type: ACTIONS.DONE_TODO, payload: { id: state.id } })
             }
@@ -30,6 +33,7 @@ const Note = ({
             Done
           </button>
           <button
+            className="btn"
             onClick={() =>
               dispatch({ type: ACTIONS.DELETE_TODO, payload: { id: state.id } })
             }
@@ -37,8 +41,10 @@ const Note = ({
             Delete
           </button>
           <button
+            className="btn"
             onClick={(e) => {
-              setShouldEdit(true);
+              toggleShouldEdit();
+
               setSendEditId(state.id);
             }}
           >

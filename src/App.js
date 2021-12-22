@@ -1,4 +1,3 @@
-import "./App.css";
 import { useReducer, useState, useRef } from "react";
 import Note from "./Note";
 
@@ -64,31 +63,52 @@ function App() {
   }
 
   return (
-    <>
-      <div className="container">
-        <div className="innerContainer">
-          <h1>Todo App using useReducer</h1>
-          <div className="todoContainer">
-            <form onSubmit={handleSubmit}>
+    <div className="box-border">
+      <div className="flex flex-col items-center bg-gray-200 p-2">
+        <div className="flex flex-col items-center border-2 border-gray-300 shadow-lg rounded-xl">
+          <h1 className="font-semibold text-4xl p-6 m-4 border-b-2 border-gray-300">
+            Todo App using{" "}
+            <span className="border-b-4 border-b-blue-400 italic">
+              useReducer
+            </span>
+          </h1>
+          <div className="w-full">
+            <form className="text-center" onSubmit={handleSubmit}>
               {shouldEdit ? (
                 <input
                   ref={editInputName}
                   onChange={(e) => setEditName(e.target.value)}
+                  className="input"
                 ></input>
               ) : (
                 <input
                   ref={inputName}
                   onChange={(e) => setName(e.target.value)}
+                  className="input"
                 />
               )}
-              <button type="submit">
-                {shouldEdit ? "Edit todo" : "Add todo"}
+              <button
+                className="text-md bg-blue-400 hover:bg-blue-500 hover:shadow-md  rounded-md  p-1 align-middle"
+                type="submit"
+              >
+                {shouldEdit ? (
+                  <span className="font-bold text-slate-600 text-md w-4 px-2 text-center uppercase">
+                    Edit todo
+                  </span>
+                ) : (
+                  <span className="font-bold text-slate-600  text-md w-4 px-2  text-center uppercase">
+                    Add todo
+                  </span>
+                )}
               </button>
             </form>
-            <ol>
+            <ol className="w-full text-center ">
               {state.map((todo) => {
                 return (
-                  <li key={todo.id}>
+                  <li
+                    className=" mx-4 border-t-2 list-decimal list-inside  border-gray-300 marker:relative "
+                    key={todo.id}
+                  >
                     <Note
                       key={todo.id}
                       state={todo}
@@ -105,7 +125,7 @@ function App() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
