@@ -63,8 +63,8 @@ function App() {
   }
 
   return (
-    <div className="box-border">
-      <div className="flex flex-col items-center bg-gray-200 p-2">
+    <div className="box-border min-h-screen bg-gray-200">
+      <div className="flex flex-col items-center  p-2">
         <div className="flex flex-col items-center border-2 border-gray-300 shadow-lg rounded-xl">
           <h1 className="font-semibold text-4xl p-6 m-4 border-b-2 border-gray-300">
             Todo App using{" "}
@@ -106,7 +106,9 @@ function App() {
               {state.map((todo) => {
                 return (
                   <li
-                    className=" mx-4 border-t-2 list-decimal list-inside  border-gray-300 marker:relative "
+                    className={`${
+                      todo.completed ? "bg-green-200" : ""
+                    } mx-4 border-t-2 list-decimal list-inside  border-gray-300 marker:relative`}
                     key={todo.id}
                   >
                     <Note

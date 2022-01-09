@@ -16,7 +16,7 @@ const Note = ({
   return (
     <>
       <div
-        className={`${state.completed ? "bg-green-200" : ""} ${
+        className={`${
           shouldEdit && state.id === sendEditId
             ? "border-2 border-green-500"
             : ""
